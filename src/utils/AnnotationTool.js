@@ -21,8 +21,8 @@ export class AnnotationTool extends EventDispatcher{
 
 		let annotation = new Annotation({
 			position: [589748.270, 231444.540, 753.675],
-			title: "Annotation Title",
-			description: `Annotation Description`
+			title: "(+)",
+			description: ``
 		});
 		this.dispatchEvent({type: 'start_inserting_annotation', annotation: annotation});
 
@@ -64,21 +64,29 @@ export class AnnotationTool extends EventDispatcher{
 
 			if (I) {
 				this.s.position.copy(I.location);
-
 				annotation.position.copy(I.location);
 			}
 		};
 
 		let drop = (e) => {
 			viewer.scene.scene.remove(this.s);
+			$('#myModal .modal-content').html(template);
+			$('.select').select2();
+			$('#myModal').modal();
+			if (typeof atcGlobal !== 'undefined') {
+				atcGlobal.annotation = annotation;
+			}
+			atcGlobal.annotation = annotation;
 			this.s.removeEventListener("drag", drag);
 			this.s.removeEventListener("drop", drop);
+			annotations.remove(annotation);
 		};
 
 		this.s.addEventListener('drag', drag);
 		this.s.addEventListener('drop', drop);
 
-		this.viewer.scene.scene.add(this.s);
+		//hide mesh
+		//this.viewer.scene.scene.add(this.s);
 		this.viewer.inputHandler.startDragging(this.s);
 
 		return annotation;

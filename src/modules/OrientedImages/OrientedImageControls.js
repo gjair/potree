@@ -29,14 +29,15 @@ export class OrientedImageControls extends EventDispatcher{
 		this.shear = [0, 0];
 
 		// const style = ``;
-		this.elUp =    $(`<input type="button" value="🡅" style="position: absolute; top: 10px; left: calc(50%); z-index: 1000" />`);
-		this.elRight = $(`<input type="button" value="🡆" style="position: absolute; top: calc(50%); right: 10px; z-index: 1000" />`);
-		this.elDown =  $(`<input type="button" value="🡇" style="position: absolute; bottom: 10px; left: calc(50%); z-index: 1000" />`);
-		this.elLeft =  $(`<input type="button" value="🡄" style="position: absolute; top: calc(50%); left: 10px; z-index: 1000" />`);
-		this.elExit = $(`<input type="button" value="Back to 3D view" style="position: absolute; bottom: 10px; right: 10px; z-index: 1000" />`);
+		this.elUp =    $(`<button  class="btn btn-primary"  style="position: absolute; top: 10px; left: calc(50%); z-index: 1000" ><i class="glyphicon glyphicon-arrow-up"></i></button>`);
+        this.elRight = $(`<button  class="btn btn-primary"  style="position: absolute; top: calc(50%); right: 140px; z-index: 1000" ><i class="glyphicon glyphicon-arrow-right"></i></button>`);
+        this.elDown =  $(`<button  class="btn btn-primary"  style="position: absolute; bottom: 10px; left: calc(50%); z-index: 1000" ><i class="glyphicon glyphicon-arrow-down"></i></button>`);
+        this.elLeft =  $(`<button  class="btn btn-primary"  style="position: absolute; top: calc(50%); left: 140px; z-index: 1000" ><i class="glyphicon glyphicon-arrow-left"></i></button>`);
+        this.elExit =  $(`<button  class="btn btn-danger"  style="position: absolute; bottom: 10px; right: 10px; z-index: 1000" ><i class="glyphicon glyphicon-remove"></i></button>`);
 
-		this.elExit.click( () => {
+		this.elExit.click(() => {
 			this.release();
+			//viewer.fitToScreen();
 		});
 
 		this.elUp.click(() => {

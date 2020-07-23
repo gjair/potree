@@ -147,7 +147,8 @@ export class PointCloudOctree extends PointCloudTree {
 		}
 
 		// TODO read projection from file instead
-		this.projection = geometry.projection;
+//		this.projection = geometry.projection;
+		this.projection = "+proj=utm +zone=14 +ellps=WGS84 +datum=World Geodetic System 1984 +units=m +no_defs";
 		this.fallbackProjection = geometry.fallbackProjection;
 
 		this.root = this.pcoGeometry.root;

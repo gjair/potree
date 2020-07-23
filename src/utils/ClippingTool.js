@@ -122,6 +122,16 @@ export class ClippingTool extends EventDispatcher{
 				
 				if(polyClipVol.markers.length > this.maxPolygonVertices){
 					cancel.callback();
+					let I = Potree.Utils.getMousePointCloudIntersection(
+						{x: e.offsetX, y: e.offsetY},
+						viewer.scene.getActiveCamera(),
+						viewer,
+						viewer.scene.pointclouds,
+						{pickClipped: true}
+					);
+					if(I) {
+						polyClipVol.addAnnotationLabel(I.location, '', true);
+					}
 				}
 				
 				this.viewer.inputHandler.startDragging(

@@ -23,10 +23,12 @@ export class BinaryLoader{
 		}
 
 		let url = node.getURL();
-
 		if (this.version.equalOrHigher('1.4')) {
 			url += '.bin';
 		}
+
+		let urlkey = url.split("..")[1];
+		url = urlsArr[urlkey];
 
 		let xhr = XHRFactory.createXMLHttpRequest();
 		xhr.open('GET', url, true);

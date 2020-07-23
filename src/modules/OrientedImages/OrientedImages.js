@@ -167,6 +167,9 @@ export class OrientedImageLoader{
 		const width = parseInt(doc.getElementsByTagName("width")[0].textContent);
 		const height = parseInt(doc.getElementsByTagName("height")[0].textContent);
 		const f = parseFloat(doc.getElementsByTagName("f")[0].textContent);
+		const cx = parseFloat(doc.getElementsByTagName("cx")[0].textContent);
+		const cy = parseFloat(doc.getElementsByTagName("cy")[0].textContent);
+
 
 		let a = (height / 2)  / f;
 		let fov = 2 * THREE.Math.radToDeg(Math.atan(a));
@@ -175,6 +178,8 @@ export class OrientedImageLoader{
 			path: path,
 			width: width,
 			height: height,
+			cx:cx,
+			cy:cy,
 			f: f,
 			fov: fov,
 		};
@@ -420,7 +425,12 @@ export class OrientedImageLoader{
 					}
 				);
 
-				const imagePath = `${imageParamsPath}/../${target.id}`;
+				//const imagePath = `${imageParamsPath}/../${target.id}`;
+				const getUrl = window.location;
+				const baseUrl = getUrl .protocol + "//" + getUrl.host + "/";
+                const param = getUrl.pathname.split('/')[2];
+                const imagePath = baseUrl+'img/'+param+'/'+image.id;
+
 				new THREE.TextureLoader().load(imagePath,
 					(texture) => {
 						target.texture = texture;
